@@ -17,13 +17,14 @@ import configuration from '../config';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
+        console.log(process.env.NODE_ENV === 'development', ' =====> ');
         return {
           type: 'mysql',
           entities: [__dirname + '/**/*.entity{.ts,.js}'],
+          ...configService.get('db.mysql'),
           autoLoadEntities: true,
           synchronize: process.env.NODE_ENV === 'development',
           logging: process.env.NODE_ENV === 'development',
-          ...configService.get('db.mysql'),
         } as TypeOrmModuleAsyncOptions;
       },
     }),
