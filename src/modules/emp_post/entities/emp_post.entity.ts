@@ -1,5 +1,5 @@
 import { CommonEntity } from '@/common/entity/common.entity';
-import { Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { EmpEntity } from '@/modules/emp/entities/emp.entity';
 import { PostEntity } from '@/modules/post/entities/post.entity';
 import { TenantEntity } from '@/modules/tenant/entities/tenant.entity';
@@ -18,11 +18,23 @@ export class EmpPostEntity extends CommonEntity {
   postCode: string;
 
   @ManyToOne(() => EmpEntity, (emp) => emp.empPosts)
+  @JoinColumn({
+    name: 'emp_id',
+    referencedColumnName: 'id',
+  })
   emp: EmpEntity;
 
   @ManyToOne(() => PostEntity, (post) => post.empPosts)
+  @JoinColumn({
+    name: 'post_code',
+    referencedColumnName: 'code',
+  })
   post: PostEntity;
 
   @ManyToOne(() => TenantEntity)
+  @JoinColumn({
+    name: 'tenant_id',
+    referencedColumnName: 'id',
+  })
   tenant: TenantEntity;
 }
