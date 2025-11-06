@@ -8,6 +8,8 @@ import { OrgTypeModule } from './modules/org-type/org-type.module';
 import { EmpModule } from './modules/emp/emp.module';
 import { PostModule } from './modules/post/post.module';
 import { EmpPostModule } from './modules/emp_post/emp_post.module';
+import { ClientModule } from './modules/client/client.module';
+import { ContractModule } from './modules/contract/contract.module';
 
 @Module({
   imports: [
@@ -18,6 +20,8 @@ import { EmpPostModule } from './modules/emp_post/emp_post.module';
     EmpModule,
     PostModule,
     EmpPostModule,
+    ClientModule,
+    ContractModule,
   ],
   controllers: [AppController],
   providers: [AppService],
