@@ -12,6 +12,7 @@ import { ClientModule } from './modules/client/client.module';
 import { ContractModule } from './modules/contract/contract.module';
 import { ProjectModule } from './modules/project/project.module';
 import { ProjectMemberModule } from './modules/project_member/project_member.module';
+import { EffortRecordModule } from './modules/effort_record/effort_record.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ProjectMemberModule } from './modules/project_member/project_member.mod
     ContractModule,
     ProjectModule,
     ProjectMemberModule,
+    EffortRecordModule,
   ],
   controllers: [AppController],
   providers: [AppService],
