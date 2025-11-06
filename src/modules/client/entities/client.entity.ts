@@ -1,4 +1,5 @@
 import { CommonEntity } from '@/common/entity/common.entity';
+import { EmpEntity } from '@/modules/emp/entities/emp.entity';
 import { TenantEntity } from '@/modules/tenant/entities/tenant.entity';
 import {
   Column,
@@ -29,4 +30,12 @@ export class ClientEntity extends CommonEntity {
     nullable: false,
   })
   name: string;
+
+  // 客户管理员
+  @ManyToOne(() => EmpEntity)
+  @JoinColumn({
+    name: 'mng_id',
+    referencedColumnName: 'id',
+  })
+  mng: EmpEntity;
 }
