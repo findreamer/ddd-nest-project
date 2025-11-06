@@ -17,6 +17,7 @@ export abstract class CommonEntity {
     type: 'int',
     name: 'create_by',
     comment: '创建人',
+    nullable: true,
   })
   public createBy: number;
 
@@ -24,6 +25,7 @@ export abstract class CommonEntity {
     type: 'int',
     name: 'update_by',
     comment: '更新人',
+    nullable: true,
   })
   public updateBy: number;
 

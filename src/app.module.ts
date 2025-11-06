@@ -13,9 +13,11 @@ import { ContractModule } from './modules/contract/contract.module';
 import { ProjectModule } from './modules/project/project.module';
 import { ProjectMemberModule } from './modules/project_member/project_member.module';
 import { EffortRecordModule } from './modules/effort_record/effort_record.module';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
+    UserModule,
     SharedModule,
     TenantModule,
     OrgModule,

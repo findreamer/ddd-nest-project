@@ -1,10 +1,10 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { setupSwagger } from './setup-swagger';
 import { LoggerInterceptor } from './common/interceptor/logger.interceptor';
 import { ResponseFormatInterceptor } from './common/interceptor/response-format.interceptor';
-import { ValidationPipe } from '@nestjs/common';
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from './common/filter/http-exception.filter';
 
 async function bootstrap() {
@@ -20,6 +20,8 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new HttpExceptionFilter());
+  //  添加全局拦截器，确保@Exclude装饰器能正常工作
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
   app.useGlobalInterceptors(new ResponseFormatInterceptor());
 
   setupSwagger(app, configService);
