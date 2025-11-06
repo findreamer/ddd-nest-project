@@ -1,5 +1,6 @@
 import { CommonEntity } from '@/common/entity/common.entity';
 import { ClientEntity } from '@/modules/client/entities/client.entity';
+import { EmpEntity } from '@/modules/emp/entities/emp.entity';
 import { TenantEntity } from '@/modules/tenant/entities/tenant.entity';
 import {
   Column,
@@ -23,6 +24,13 @@ export class ContractEntity extends CommonEntity {
     referencedColumnName: 'id',
   })
   tenant: TenantEntity;
+
+  @ManyToOne(() => EmpEntity)
+  @JoinColumn({
+    name: 'mgn_id',
+    referencedColumnName: 'id',
+  })
+  mgn: EmpEntity;
 
   @Column({
     comment: '合同编号',
