@@ -2,6 +2,7 @@ import { Global, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
 import configuration from '../config';
+import { JwtModule } from '@nestjs/jwt';
 
 @Global()
 @Module({
@@ -26,6 +27,15 @@ import configuration from '../config';
           synchronize: process.env.NODE_ENV === 'development',
           logging: process.env.NODE_ENV === 'development',
         } as TypeOrmModuleAsyncOptions;
+      },
+    }),
+
+    JwtModule.register({
+      global: true,
+      secret: 'fdfdzfd',
+      signOptions: {
+        // 过期时间7天
+        expiresIn: '7d',
       },
     }),
   ],
