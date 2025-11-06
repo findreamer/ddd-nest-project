@@ -10,6 +10,7 @@ import { PostModule } from './modules/post/post.module';
 import { EmpPostModule } from './modules/emp_post/emp_post.module';
 import { ClientModule } from './modules/client/client.module';
 import { ContractModule } from './modules/contract/contract.module';
+import { ProjectModule } from './modules/project/project.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ContractModule } from './modules/contract/contract.module';
     EmpPostModule,
     ClientModule,
     ContractModule,
+    ProjectModule,
   ],
   controllers: [AppController],
   providers: [AppService],
