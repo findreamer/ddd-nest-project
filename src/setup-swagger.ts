@@ -20,6 +20,17 @@ export function setupSwagger(
     .setTitle(title)
     .setDescription(description)
     .setVersion(version)
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'JWT',
+        description: '输入JWT Token',
+        in: 'header',
+      },
+      'jwt', // 这个名称要与下面的 setupOptions 中的名称一致
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, documentBuilder, {
@@ -30,7 +41,13 @@ export function setupSwagger(
       ResOp,
     ],
   });
-  SwaggerModule.setup(path, app, document);
+
+  // 设置 Swagger UI 选项
+  SwaggerModule.setup(path, app, document, {
+    swaggerOptions: {
+      persistAuthorization: true, // 保持授权信息
+    },
+  });
 
   setTimeout(() => {
     const logger = new Logger('SwaggerModule');
