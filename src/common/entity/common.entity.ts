@@ -11,7 +11,7 @@ export abstract class CommonEntity {
     comment: '是否删除',
   })
   @Exclude()
-  private isDeleted: number;
+  isDeleted: number;
 
   @Column({
     type: 'int',

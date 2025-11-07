@@ -1,4 +1,5 @@
 import { CommonEntity } from '@/common/entity/common.entity';
+import { EmpEntity } from '@/modules/emp/entities/emp.entity';
 import { TenantEntity } from '@/modules/tenant/entities/tenant.entity';
 import {
   Column,
@@ -23,4 +24,20 @@ export class OrgEntity extends CommonEntity {
     referencedColumnName: 'id',
   })
   tenant: TenantEntity;
+
+  // 上级组织
+  @ManyToOne(() => OrgEntity, (org) => org.id)
+  @JoinColumn({
+    name: 'superior_id',
+    referencedColumnName: 'id',
+  })
+  superior: OrgEntity;
+
+  // 负责人
+  @ManyToOne(() => EmpEntity)
+  @JoinColumn({
+    name: 'leader_id',
+    referencedColumnName: 'id',
+  })
+  leader: EmpEntity;
 }
